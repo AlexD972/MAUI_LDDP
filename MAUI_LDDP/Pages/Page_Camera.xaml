@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_LDDP.Pages.Page_Camera"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             Title="Page_Camera" NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Label Text="Ajout d'un sondage" FontSize="25" TextColor="White" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+
+            <Label x:Name="barcodeResult" FontSize="20"/>
+            <cv:CameraView x:Name="cameraView" WidthRequest="400" HeightRequest="300" CamerasLoaded="cameraView_CamerasLoaded" BarCodeDetectionEnabled="True"
+                           BarcodeDetected="cameraView_BarcodeDetected"/>
+
+            <Button Text="Ajouter avec un code" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

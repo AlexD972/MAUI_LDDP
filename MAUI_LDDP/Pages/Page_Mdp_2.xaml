@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_LDDP.Pages.Page_Mdp_2"
+             Title="Page_Mdp_2" NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="80*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="45*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="0" Text="La dictature&#10; du plaisir" FontSize="30" TextColor="White" FontFamily="RibeyeRegular" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Label Grid.Column="1" Grid.Row="1" Text="Changer de mot de passe" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" HorizontalOptions="Center"/>
+        <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Email" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" VerticalOptions="Center"/>
+            <Button Grid.Row="1" Opacity="0.7" Background="White" CornerRadius="30"/>
+            <Entry Grid.Row="1" Background="Transparent" TextColor="Black"/>
+
+            <Label Grid.Row="2" Text="Code de l'email" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" VerticalOptions="Center"/>
+            <Button Grid.Row="3" Opacity="0.7" Background="White" CornerRadius="30"/>
+            <Entry Grid.Row="3" Background="Transparent" TextColor="Black"/>
+
+            <Label Grid.Row="4" Text="Nouveau mot de passe" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" VerticalOptions="Center"/>
+            <Button Grid.Row="5" Opacity="0.7" Background="White" CornerRadius="30"/>
+            <Entry Grid.Row="5" Background="Transparent" TextColor="Black" IsPassword="True"/>
+
+            <Button Grid.Row="6" Text="Changer" Clicked="Button_Connexion_Clicked" Background="#0075FF" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="End"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Text="Pas de compte ?" TextColor="White" FontFamily="RibeyeRegular" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Button Grid.Column="0" Grid.Row="1" Text="Inscription" Clicked="Button_Inscription_Clicked" LineBreakMode="CharacterWrap" Background="#0075FF" TextColor="White" FontFamily="RibeyeRegular" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+            <Label Grid.Column="1" Grid.Row="0" Text="Déjà un compte ?" TextColor="White" FontFamily="RibeyeRegular" HorizontalOptions="Center" VerticalOptions="End"/>
+            <Button Grid.Column="1" Grid.Row="1" Text="Se connecter" Clicked="Button_Connexion_Clicked" LineBreakMode="CharacterWrap" Background="#0075FF" FontSize="Caption" TextColor="White" FontFamily="RibeyeRegular" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="Start"/>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_LDDP.Pages.Page_Parametres"
+             Title="Page_Parametres" Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="25*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Paramètres du compte" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        
+        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="Changer de mot de passe" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+            <Label Grid.Row="1" Text="Signaler un problème" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+            <Label Grid.Row="2" Text="Aide" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+            <Label Grid.Row="3" Text="Mentions légales et politiques" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+            <Label Grid.Row="4" Text="À propos" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#D4F0F2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_sondage.png" Clicked="Button_Accueil_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Grid.Column="3" Grid.Row="0" Background="#82D9FF" ImageSource="logo_parametre.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="Sondages" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="3" Grid.Row="1" Text="Paramètres" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

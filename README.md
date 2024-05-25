@@ -1,10 +1,9 @@
 <h1 align="center">Application la dictature du plaisir 📱</h1>
 
 <p align="center">
-  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/30f2ac05-96a1-426b-b120-28036b54d517" width="150">
-  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/e33dec3f-eb05-4b30-8162-817da4b9d517" width="131">
-  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/faff3832-24c9-40d4-b0d2-ee9b3be55a63" width="150">
-
+  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/922a6abb-4bc3-478d-b48d-c1c9d13c1cfc" width="150">
+  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/7b0ac197-88ab-49c1-a526-f8d42ba2887e" width="131">
+  <img src="https://github.com/AlexD972/MAUI_LDDP/assets/125886242/5a116ce9-c658-40d0-982e-35c54e61be22" width="150">
 </p>
 
 Bienvenue dans le projet MAUI_LDDP (La dictature du plaisir).

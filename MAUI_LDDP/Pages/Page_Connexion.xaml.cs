@@ -34,6 +34,7 @@ public partial class Page_Connexion : ContentPage
 	}
 	private void Button_Connexion_Clicked(object sender, EventArgs e)
 	{
+		Navigation.PushAsync(new Page_Accueil(), false);
 		//var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
 		//Application.Current.MainPage = new NavigationPage(new Page_Accueil());
 		//var result = await SignInWithEmailPassword(emailEntry.Text, passwordEntry.Text);

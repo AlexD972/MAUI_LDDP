@@ -13,3 +13,6 @@ Bienvenue dans le projet MAUI_LDDP (La dictature du plaisir).
 
 # Langage de programmation
 Ce projet est réalisé avec le langage **C#** en utilisant le framework **MAUI**.
+
+# Pour faire fonctionner le projet
+Après décompression du zip, il faut renommer le dossier pm44-fil-rouge-appindividuelle-AlexD972 et son sous-dossier pm44-fil-rouge-appindividuelle-AlexD972 en quelque chose de plus court sinon ils poseront problème lors de la compilation du projet.

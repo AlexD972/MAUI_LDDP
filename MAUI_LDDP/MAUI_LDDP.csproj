@@ -58,6 +58,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Ribeye-Regular.ttf" />
+	  <None Remove="Resources\Images\logo_aide.png" />
+	  <None Remove="Resources\Images\logo_bouclier.png" />
+	  <None Remove="Resources\Images\logo_document.png" />
+	  <None Remove="Resources\Images\logo_erreur.png" />
+	  <None Remove="Resources\Images\logo_information.png" />
 	  <None Remove="Resources\Images\logo_parametre.png" />
 	  <None Remove="Resources\Images\logo_plus.png" />
 	  <None Remove="Resources\Images\logo_refresh.png" />

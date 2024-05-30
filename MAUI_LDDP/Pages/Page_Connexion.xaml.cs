@@ -1,15 +1,22 @@
 //using FirebaseAdmin.Auth;
+using Firebase.Auth;
+using Firebase.Auth.Repository;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
+using MAUI_LDDP.Services;
+using MAUI_LDDP.Helpers;
+//using Windows.Media.Protection.PlayReady;
 
 namespace MAUI_LDDP.Pages;
 
 public partial class Page_Connexion : ContentPage
 {
+	private readonly FirebaseAuthService _authService;
 	public Page_Connexion()
 	{
 		InitializeComponent();
+		_authService = ServiceHelper.ServiceProvider.GetService<FirebaseAuthService>();
 
 		Background = new LinearGradientBrush
 		{
@@ -32,28 +39,29 @@ public partial class Page_Connexion : ContentPage
 	{
 		Navigation.PushAsync(new Page_Mdp_1(), false);
 	}
-	private void Button_Connexion_Clicked(object sender, EventArgs e)
+	private async void Button_Connexion_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Page_Accueil(), false);
-		//var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-		//Application.Current.MainPage = new NavigationPage(new Page_Accueil());
-		//var result = await SignInWithEmailPassword(emailEntry.Text, passwordEntry.Text);
-		//await DisplayAlert("Sign In", result, "OK");
-	}
+		//Navigation.PushAsync(new Page_Accueil(), false);
 
-	//public async Task<string> SignInWithEmailPassword(string email, string password)
-	//{
-	//	try
-	//	{
-	//		auth.
-	//		var user = await auth.SignInWithEmailAndPasswordAsync(email, password);
-	//		return $"User signed in: {user.User.Uid}";
-	//	}
-	//	catch (FirebaseAuthException ex)
-	//	{
-	//		return $"Error: {ex.Reason}";
-	//	}
-	//}
+
+		var email = EmailEntry.Text;
+		var password = PasswordEntry.Text;
+		var result = await _authService.SignInWithEmailPasswordAsync(email, password);
+		//await DisplayAlert("Login Result", result, "OK");
+
+		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
+		{
+			// Navigate to the new page
+			await Navigation.PushAsync(new Page_Accueil());
+		}
+		else
+		{
+			// Show an alert with the error message
+			await DisplayAlert("Login Result", "Login failed. Please try again.", "OK");
+		}
+	}
+	//Message d'erreur si pas bon : Error: Unknown
+
 
 	protected override bool OnBackButtonPressed()
 	{

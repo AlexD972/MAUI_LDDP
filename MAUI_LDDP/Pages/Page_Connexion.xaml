@@ -30,11 +30,11 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Text="Email" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" VerticalOptions="Center"/>
             <Button Grid.Row="1" Opacity="0.7" Background="White" CornerRadius="30"/>
-            <Entry Grid.Row="1" Background="Transparent" TextColor="Black"/>
+            <Entry x:Name="EmailEntry" Grid.Row="1" Background="Transparent" TextColor="Black"/>
             
             <Label Grid.Row="2" Text="Mot de passe" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" VerticalOptions="Center"/>
             <Button Grid.Row="3" Opacity="0.7" Background="White" CornerRadius="30"/>
-            <Entry Grid.Row="3" Background="Transparent" TextColor="Black" IsPassword="True"/>
+            <Entry x:Name="PasswordEntry" Grid.Row="3" Background="Transparent" TextColor="Black" IsPassword="True"/>
             <Button Grid.Row="4" Text="Se connecter" Clicked="Button_Connexion_Clicked" Background="#0075FF" FontSize="Medium" TextColor="White" FontFamily="RibeyeRegular" CornerRadius="30" HorizontalOptions="Center" VerticalOptions="End"/>
         </Grid>
 

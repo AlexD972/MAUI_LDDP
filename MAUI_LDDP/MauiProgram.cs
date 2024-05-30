@@ -2,6 +2,11 @@
 using Microsoft.Maui.ApplicationModel;
 using System.Reflection;
 using Camera.MAUI;
+using Firebase.Auth.Providers;
+using Firebase.Auth.Repository;
+using Firebase.Auth;
+using MAUI_LDDP.Services;
+using MAUI_LDDP.Helpers;
 
 namespace MAUI_LDDP
 {
@@ -10,16 +15,6 @@ namespace MAUI_LDDP
 		public static MauiApp CreateMauiApp()
 		{
 			var builder = MauiApp.CreateBuilder();
-
-			//FirebaseApp.Create(new AppOptions()
-			//{
-			//	Credential = GoogleCredential.FromFile("Resources/Raw/google-services.json"),
-			//});
-
-			//FirebaseApp.Create(new AppOptions()
-			//{
-			//	Credential = GoogleCredential.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream("Test_Dev_Mob_1.google-services.json"))
-			//});
 
 			builder
 				.UseMauiApp<App>()
@@ -35,7 +30,29 @@ namespace MAUI_LDDP
 			builder.Logging.AddDebug();
 #endif
 
-			return builder.Build();
+			var config = new FirebaseAuthConfig
+			{
+				ApiKey = "AIzaSyD9Nk86Jvw0khX8Z90dtNHWBFAfPEcQeSk",
+				AuthDomain = "ionicapp-71182.firebaseapp.com",
+				Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
+				{
+					new Firebase.Auth.Providers.GoogleProvider().AddScopes("email"),
+					new Firebase.Auth.Providers.EmailProvider()
+				},
+				UserRepository = new FileUserRepository("FirebaseSample")
+			};
+
+			var client = new Firebase.Auth.FirebaseAuthClient(config);
+			builder.Services.AddSingleton(client);
+			builder.Services.AddSingleton<FirebaseAuthService>();
+
+			var app = builder.Build();
+			ServiceHelper.ServiceProvider = app.Services;
+			return app;
+
+
+
+//			return builder.Build();
 		}
 	}
 }

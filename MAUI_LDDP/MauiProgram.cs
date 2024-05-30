@@ -32,7 +32,7 @@ namespace MAUI_LDDP
 
 			var config = new FirebaseAuthConfig
 			{
-				ApiKey = "AIzaSyD9Nk86Jvw0khX8Z90dtNHWBFAfPEcQeSk",
+				ApiKey = "cle api",
 				AuthDomain = "ionicapp-71182.firebaseapp.com",
 				Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
 				{

@@ -1,12 +1,5 @@
-//using FirebaseAdmin.Auth;
-using Firebase.Auth;
-using Firebase.Auth.Repository;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
-//using Windows.Media.Protection.PlayReady;
 
 namespace MAUI_LDDP.Pages;
 
@@ -41,9 +34,6 @@ public partial class Page_Connexion : ContentPage
 	}
 	private async void Button_Connexion_Clicked(object sender, EventArgs e)
 	{
-		//Navigation.PushAsync(new Page_Accueil(), false);
-
-
 		var email = EmailEntry.Text;
 		var password = PasswordEntry.Text;
 		var result = await _authService.SignInWithEmailPasswordAsync(email, password);
@@ -51,17 +41,13 @@ public partial class Page_Connexion : ContentPage
 
 		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
 		{
-			// Navigate to the new page
 			await Navigation.PushAsync(new Page_Accueil());
 		}
 		else
 		{
-			// Show an alert with the error message
-			await DisplayAlert("Login Result", "Login failed. Please try again.", "OK");
+			await DisplayAlert("Erreur de connexion", "Problème de connexion. Essayez de nouveau.", "OK");
 		}
 	}
-	//Message d'erreur si pas bon : Error: Unknown
-
 
 	protected override bool OnBackButtonPressed()
 	{

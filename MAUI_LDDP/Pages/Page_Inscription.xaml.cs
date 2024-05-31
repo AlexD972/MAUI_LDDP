@@ -1,10 +1,16 @@
+using MAUI_LDDP.Services;
+using MAUI_LDDP.Helpers;
+
 namespace MAUI_LDDP.Pages;
 
 public partial class Page_Inscription : ContentPage
 {
+	private readonly FirebaseAuthService _authService;
 	public Page_Inscription()
 	{
 		InitializeComponent();
+		_authService = ServiceHelper.ServiceProvider.GetService<FirebaseAuthService>();
+
 		Background = new LinearGradientBrush
 		{
 			StartPoint = new Point(0.5, 0),
@@ -16,6 +22,23 @@ public partial class Page_Inscription : ContentPage
 					new GradientStop(Color.FromArgb("#372A65"), 1.0f)
 				}
 		};
+	}
+
+	private async void Button_Inscription_Clicked(object sender, EventArgs e)
+	{
+		var email = EmailEntry.Text;
+		var password = PasswordEntry.Text;
+		var result = await _authService.CreateUserWithEmailAndPasswordAsync(email, password);
+		//await DisplayAlert("Login Result", result, "OK");
+
+		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
+		{
+			await Navigation.PushAsync(new Page_Accueil());
+		}
+		else
+		{
+			await DisplayAlert("Erreur d'inscription", "Le mot de passe doit contenir 6 caractères au moins. Essayez de nouveau.", "OK");
+		}
 	}
 
 	private void Button_Connexion_Clicked(object sender, EventArgs e)

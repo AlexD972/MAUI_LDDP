@@ -24,7 +24,7 @@ namespace MAUI_LDDP.Services
 			}
 		}
 
-		public async Task<string> RegisterWithEmailPasswordAsync(string email, string password)
+		public async Task<string> CreateUserWithEmailAndPasswordAsync(string email, string password)
 		{
 			try
 			{

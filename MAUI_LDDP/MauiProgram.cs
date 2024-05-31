@@ -1,15 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui.ApplicationModel;
-using System.Reflection;
 using Camera.MAUI;
-using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
 using Firebase.Auth;
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Maui.Controls;
-using Newtonsoft.Json;
+
 
 namespace MAUI_LDDP
 {
@@ -33,7 +28,6 @@ namespace MAUI_LDDP
 			builder.Logging.AddDebug();
 #endif
 
-
 			var config = new FirebaseAuthConfig
 			{
 				ApiKey = "AIzaSyD7q-kS4aVMTfy0UDFsLvSIl5_iJGMnMzc",
@@ -53,10 +47,6 @@ namespace MAUI_LDDP
 			var app = builder.Build();
 			ServiceHelper.ServiceProvider = app.Services;
 			return app;
-
-
-
-//			return builder.Build();
 		}
 	}
 }

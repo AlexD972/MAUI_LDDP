@@ -59,9 +59,15 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="1" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="Sondages" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="3" Grid.Row="1" Text="Paramètres" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

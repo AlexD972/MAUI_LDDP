@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Paramètres du compte" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        
+
         <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -24,11 +24,16 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="Changer de mot de passe" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="1" Text="Signaler un problème" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="2" Text="Aide" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="3" Text="Mentions légales et politiques" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="4" Text="À propos" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+
+            <Button Grid.Row="0" Text="Changer de mot de passe" IsEnabled="False"  FontSize="Medium" TextColor="Black" Background="Transparent" ImageSource="logo_bouclier50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+            <Button Grid.Row="1" Text="Signaler un problème" IsEnabled="False" FontSize="Medium" TextColor="Black" Background="Transparent" ImageSource="logo_erreur50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+            <Button Grid.Row="2" Text="Aide" IsEnabled="False" FontSize="Medium" TextColor="Black" Background="Transparent" ImageSource="logo_aide50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+            <Button Grid.Row="3" Text="Mentions légales et politiques" IsEnabled="False" FontSize="Medium" TextColor="Black" Background="Transparent" ImageSource="logo_document50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+            <Button Grid.Row="4" Text="À propos" FontSize="Medium" IsEnabled="False" TextColor="Black" Background="Transparent" ImageSource="logo_information50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
         </Grid>
 
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
@@ -55,8 +60,14 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_sondage.png" Clicked="Button_Accueil_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Button Grid.Column="3" Grid.Row="0" Background="#82D9FF" ImageSource="logo_parametre.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="Sondages" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_Accueil_Clicked"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Button Grid.Column="3" Grid.Row="0" Background="#82D9FF" ImageSource="logo_parametre.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="3" Grid.Row="1" Text="Paramètres" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Grid>
         </Grid>

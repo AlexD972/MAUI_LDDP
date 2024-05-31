@@ -36,6 +36,14 @@ public partial class Page_Connexion : ContentPage
 	{
 		var email = EmailEntry.Text;
 		var password = PasswordEntry.Text;
+
+		//A ENLEVER
+		if(email == null || password == null)
+		{
+			await Navigation.PushAsync(new Page_Accueil());
+		}
+
+		//A GARDER
 		var result = await _authService.SignInWithEmailPasswordAsync(email, password);
 		//await DisplayAlert("Login Result", result, "OK");
 

@@ -15,4 +15,9 @@ public partial class Page_Parametres : ContentPage
 	{
 		Navigation.PushAsync(new Page_Accueil(), false);
 	}
+
+	private void Button_Parametres_Clicked(object sender, EventArgs e)
+	{
+		Navigation.PushAsync(new Page_Parametres(), false);
+	}
 }

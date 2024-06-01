@@ -29,4 +29,18 @@ public partial class Page_Camera : ContentPage
 			barcodeResult.Text = $"{args.Result[0].BarcodeFormat}: {args.Result[0].Text}";
 		});
 	}
+
+	private void Button_Add_Clicked(object sender, EventArgs e)
+	{
+
+		Dispatcher.Dispatch(async () =>
+		{
+			var result = await this.DisplayAlert("Confirmation", "Voulez-vous ajouter un sondage avec un code ?", "Oui", "Non");
+			if (result)
+			{
+				//Navigation.PushAsync(new Page_Parametres(), false);
+			}
+		});
+		//Navigation.PushAsync(new Page_Accueil(), false);
+	}
 }

@@ -30,8 +30,8 @@ public partial class Page_Accueil : ContentPage
 			}
 		});
 		Navigation.PushAsync(new Page_Accueil(), false);
-
 	}
+
 	private void Button_Camera_Clicked(object sender, EventArgs e)
 	{
 		Navigation.PushAsync(new Page_Camera(), false);

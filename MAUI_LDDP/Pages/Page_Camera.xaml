@@ -16,7 +16,7 @@
             <cv:CameraView x:Name="cameraView" WidthRequest="400" HeightRequest="300" CamerasLoaded="cameraView_CamerasLoaded" BarCodeDetectionEnabled="True"
                            BarcodeDetected="cameraView_BarcodeDetected"/>
 
-            <Button Text="Ajouter avec un code" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Button Text="Ajouter avec un code" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Add_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         </VerticalStackLayout>
     </ScrollView>

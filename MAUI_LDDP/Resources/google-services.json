@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "342151259060",
+    "project_id": "ionicapp-71182",
+    "storage_bucket": "ionicapp-71182.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342151259060:android:973bdf2db9eab91914c8e1",
+        "android_client_info": {
+          "package_name": "com.companyname.mauilddp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7q-kS4aVMTfy0UDFsLvSIl5_iJGMnMzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342151259060:android:821836dee9317aaf14c8e1",
+        "android_client_info": {
+          "package_name": "fr.univtln.rroux588.ladictatureduplaisir"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7q-kS4aVMTfy0UDFsLvSIl5_iJGMnMzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

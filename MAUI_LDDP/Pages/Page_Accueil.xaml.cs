@@ -20,12 +20,13 @@ public partial class Page_Accueil : ContentPage
 
 	private void Button_Create_Clicked(object sender, EventArgs e)
 	{
+		
 		Dispatcher.Dispatch(async () =>
 		{
 			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer un sondage ?", "Oui", "Non");
 			if (result)
 			{
-				Navigation.PushAsync(new Page_Parametres(), false);
+				//Navigation.PushAsync(new Page_Parametres(), false);
 			}
 		});
 		Navigation.PushAsync(new Page_Accueil(), false);

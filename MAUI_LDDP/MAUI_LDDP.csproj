@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="ionicapp.json" />
 	  <None Remove="Resources\Fonts\Ribeye-Regular.ttf" />
 	  <None Remove="Resources\Images\logo_aide50.png" />
 	  <None Remove="Resources\Images\logo_bouclier50.png" />
@@ -68,6 +69,10 @@
 	  <None Remove="Resources\Images\logo_refresh.png" />
 	  <None Remove="Resources\Images\logo_sondage.png" />
 	  <None Remove="Resources\Raw\api_key.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="ionicapp.json" />
 	</ItemGroup>
 
 	<ItemGroup>

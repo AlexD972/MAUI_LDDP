@@ -1,14 +1,23 @@
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
 
+using System.IO;
+using System.Threading.Tasks;
+using Google.Cloud.Firestore;
+using Firebase.Auth;
+
 namespace MAUI_LDDP.Pages;
 
 public partial class Page_Connexion : ContentPage
 {
 	private readonly FirebaseAuthService _authService;
+
+	FirestoreDb database;
+
 	public Page_Connexion()
 	{
 		InitializeComponent();
+
 		_authService = ServiceHelper.ServiceProvider.GetService<FirebaseAuthService>();
 
 		Background = new LinearGradientBrush
@@ -38,23 +47,61 @@ public partial class Page_Connexion : ContentPage
 		var password = PasswordEntry.Text;
 
 		//A ENLEVER
-		if(email == null || password == null)
+		if (email == null || password == null)
 		{
 			await Navigation.PushAsync(new Page_Accueil());
 		}
 
-		//A GARDER
-		var result = await _authService.SignInWithEmailPasswordAsync(email, password);
-		//await DisplayAlert("Login Result", result, "OK");
 
-		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
+		// Read the JSON file from the app package
+		using (var stream = await FileSystem.OpenAppPackageFileAsync("ionicapp.json"))
 		{
-			await Navigation.PushAsync(new Page_Accueil());
+			// Define a local path to save the file
+			var localFilePath = Path.Combine(FileSystem.CacheDirectory, "ionicapp.json");
+
+			// Save the stream to the local path
+			using (var fileStream = File.Create(localFilePath))
+			{
+				await stream.CopyToAsync(fileStream);
+			} // Ensure the fileStream is closed before using the file
+
+			// Set the environment variable with the local file path
+			Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", localFilePath);
 		}
-		else
+
+		// Initialize Firestore with your project ID
+		database = FirestoreDb.Create("ionicapp-71182");
+
+		// Create a reference to a collection
+		CollectionReference coll = database.Collection("TESTMAUI");
+
+		// Create a document to add to the collection
+		Dictionary<string, object> city = new Dictionary<string, object>
 		{
-			await DisplayAlert("Erreur de connexion", "Problème de connexion. Essayez de nouveau.", "OK");
-		}
+			{ "name", "LA" },
+			{ "state", "CA" },
+			{ "Country", "USA" }
+		};
+
+		// Add the document to the collection asynchronously
+		await coll.AddAsync(city);
+
+
+
+
+
+		////A GARDER
+		//var result = await _authService.SignInWithEmailPasswordAsync(email, password);
+		////await DisplayAlert("Login Result", result, "OK");
+
+		//if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
+		//{
+		//	await Navigation.PushAsync(new Page_Accueil());
+		//}
+		//else
+		//{
+		//	await DisplayAlert("Erreur de connexion", "Problème de connexion. Essayez de nouveau.", "OK");
+		//}
 	}
 
 	protected override bool OnBackButtonPressed()

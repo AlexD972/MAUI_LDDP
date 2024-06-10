@@ -26,7 +26,9 @@ public partial class Page_Accueil : ContentPage
 			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer un sondage ?", "Oui", "Non");
 			if (result)
 			{
-				//Navigation.PushAsync(new Page_Parametres(), false);
+				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom du sondage");
+				// Naviguez vers la nouvelle page pour choisir la date
+				await Navigation.PushAsync(new Page_Creation_Sondage(pollName), false);
 			}
 		});
 		Navigation.PushAsync(new Page_Accueil(), false);

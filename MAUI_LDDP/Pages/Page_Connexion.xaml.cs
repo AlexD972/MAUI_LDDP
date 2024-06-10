@@ -54,20 +54,20 @@ public partial class Page_Connexion : ContentPage
 			await Navigation.PushAsync(new Page_Accueil());
 		}
 
-		
-		// Create a reference to a collection
-		CollectionReference coll = _database.Collection("TESTMAUI");
+		////FireStore
+		//// Créer une référence à une collection
+		//CollectionReference coll = _database.Collection("TESTMAUI");
 
-		// Create a document to add to the collection
-		Dictionary<string, object> city = new Dictionary<string, object>
-		{
-			{ "name", "LA" },
-			{ "state", "CA" },
-			{ "Country", "USA" }
-		};
+		//// Créer un document avec des données
+		//Dictionary<string, object> city = new Dictionary<string, object>
+		//{
+		//	{ "name", "LA" },
+		//	{ "state", "CA" },
+		//	{ "Country", "USA" }
+		//};
 
-		// Add the document to the collection asynchronously
-		await coll.AddAsync(city);
+		//// Ajoute le document à la collection
+		//await coll.AddAsync(city);
 
 
 

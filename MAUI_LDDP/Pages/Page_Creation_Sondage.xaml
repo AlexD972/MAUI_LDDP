@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_LDDP.Pages.Page_Creation_Sondage"
+             Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="25*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Ajouter un sondage" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+        <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand">
+            <Label x:Name="PollNameLabel" 
+               Text="Nom du sondage : " 
+               FontSize="Medium" 
+               HorizontalOptions="CenterAndExpand"
+               TextColor="Black"/>
+            <Label 
+               Text="Choississez la date : " 
+               FontSize="Medium" 
+               HorizontalOptions="CenterAndExpand"
+               TextColor="Black"/>
+            <DatePicker x:Name="PollDatePicker" 
+                    Format="D" 
+                    DateSelected="OnDateSelected" 
+                    HorizontalOptions="CenterAndExpand" 
+                    TextColor="Black"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

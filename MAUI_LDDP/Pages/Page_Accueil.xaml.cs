@@ -1,3 +1,4 @@
+using Google.Cloud.Firestore;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
@@ -6,6 +7,7 @@ namespace MAUI_LDDP.Pages;
 
 public partial class Page_Accueil : ContentPage
 {
+
 	public Page_Accueil()
 	{
 		InitializeComponent();
@@ -28,7 +30,9 @@ public partial class Page_Accueil : ContentPage
 			{
 				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom du sondage");
 				// Naviguez vers la nouvelle page pour choisir la date
-				await Navigation.PushAsync(new Page_Creation_Sondage(pollName), false);
+				var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+
+				await Navigation.PushAsync(new Page_Creation_Sondage(database, pollName), false);
 			}
 		});
 		Navigation.PushAsync(new Page_Accueil(), false);

@@ -29,9 +29,12 @@
                TextColor="Black"/>
             <DatePicker x:Name="PollDatePicker" 
                     Format="D" 
-                    DateSelected="OnDateSelected" 
                     HorizontalOptions="CenterAndExpand" 
                     TextColor="Black"/>
+            <Button Text="Confirmer" 
+            Clicked="OnConfirmClicked" 
+            HorizontalOptions="CenterAndExpand" 
+            TextColor="Black"/>
         </StackLayout>
     </Grid>
 </ContentPage>

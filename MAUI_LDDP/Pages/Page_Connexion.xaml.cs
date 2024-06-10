@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Google.Cloud.Firestore;
 using Firebase.Auth;
-using MAUI_LDDP;
+
 
 namespace MAUI_LDDP.Pages;
 

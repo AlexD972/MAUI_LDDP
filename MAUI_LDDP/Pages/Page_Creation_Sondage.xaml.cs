@@ -1,4 +1,5 @@
 using Google.Cloud.Firestore;
+using MAUI_LDDP.Services;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
@@ -28,15 +29,20 @@ public partial class Page_Creation_Sondage : ContentPage
 		// Créer un document avec des données
 		Dictionary<string, object> sondage = new Dictionary<string, object>
 		{
-			{ "Createur", "" },
+			{ "Createur", GlobalUID.UserUID },
 			{ "DateJ", PollDatePicker.Date.ToUniversalTime() },
-			{ "Fini", "" },
-			{ "NameJ", _pollName },
-			{ "Token", "" }
+			{ "Fini", false },
+			{ "NameJ", _pollName }
 		};
 
 		// Ajoute le document à la collection journee
-		await coll.AddAsync(sondage);
+		DocumentReference docRef = await coll.AddAsync(sondage);
+
+		// Obtient l'ID du document et l'utilise comme token
+		string token = docRef.Id;
+
+		// Ajoute le token au document
+		await docRef.UpdateAsync("Token", token);
 
 		await Navigation.PopAsync();  // Retour à la page précédente
 	}

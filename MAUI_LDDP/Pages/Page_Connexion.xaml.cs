@@ -54,37 +54,19 @@ public partial class Page_Connexion : ContentPage
 			await Navigation.PushAsync(new Page_Accueil());
 		}
 
-		////FireStore
-		//// Créer une référence à une collection
-		//CollectionReference coll = _database.Collection("TESTMAUI");
+		//A GARDER
+		var result = await _authService.SignInWithEmailPasswordAsync(email, password);
+		//await DisplayAlert("Login Result", result, "OK");
 
-		//// Créer un document avec des données
-		//Dictionary<string, object> city = new Dictionary<string, object>
-		//{
-		//	{ "name", "LA" },
-		//	{ "state", "CA" },
-		//	{ "Country", "USA" }
-		//};
-
-		//// Ajoute le document à la collection
-		//await coll.AddAsync(city);
-
-
-
-
-
-		////A GARDER
-		//var result = await _authService.SignInWithEmailPasswordAsync(email, password);
-		////await DisplayAlert("Login Result", result, "OK");
-
-		//if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
-		//{
-		//	await Navigation.PushAsync(new Page_Accueil());
-		//}
-		//else
-		//{
-		//	await DisplayAlert("Erreur de connexion", "Problème de connexion. Essayez de nouveau.", "OK");
-		//}
+		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
+		{
+			GlobalUID.UserUID = result;
+			await Navigation.PushAsync(new Page_Accueil());
+		}
+		else
+		{
+			await DisplayAlert("Erreur de connexion", "Problème de connexion. Essayez de nouveau.", "OK");
+		}
 	}
 
 	protected override bool OnBackButtonPressed()

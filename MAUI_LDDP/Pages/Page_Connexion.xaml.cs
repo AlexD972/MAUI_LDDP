@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Google.Cloud.Firestore;
 using Firebase.Auth;
+using MAUI_LDDP;
 
 namespace MAUI_LDDP.Pages;
 
@@ -12,13 +13,14 @@ public partial class Page_Connexion : ContentPage
 {
 	private readonly FirebaseAuthService _authService;
 
-	FirestoreDb database;
+	private readonly FirestoreDb _database;
 
-	public Page_Connexion()
+	public Page_Connexion(FirestoreDb database)
 	{
 		InitializeComponent();
 
 		_authService = ServiceHelper.ServiceProvider.GetService<FirebaseAuthService>();
+		_database = database;
 
 		Background = new LinearGradientBrush
 		{
@@ -52,28 +54,9 @@ public partial class Page_Connexion : ContentPage
 			await Navigation.PushAsync(new Page_Accueil());
 		}
 
-
-		// Read the JSON file from the app package
-		using (var stream = await FileSystem.OpenAppPackageFileAsync("ionicapp.json"))
-		{
-			// Define a local path to save the file
-			var localFilePath = Path.Combine(FileSystem.CacheDirectory, "ionicapp.json");
-
-			// Save the stream to the local path
-			using (var fileStream = File.Create(localFilePath))
-			{
-				await stream.CopyToAsync(fileStream);
-			} // Ensure the fileStream is closed before using the file
-
-			// Set the environment variable with the local file path
-			Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", localFilePath);
-		}
-
-		// Initialize Firestore with your project ID
-		database = FirestoreDb.Create("ionicapp-71182");
-
+		
 		// Create a reference to a collection
-		CollectionReference coll = database.Collection("TESTMAUI");
+		CollectionReference coll = _database.Collection("TESTMAUI");
 
 		// Create a document to add to the collection
 		Dictionary<string, object> city = new Dictionary<string, object>

@@ -1,4 +1,7 @@
 ﻿using MAUI_LDDP.Pages;
+using Google.Cloud.Firestore;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace MAUI_LDDP
 {
 	public partial class App : Application
@@ -7,7 +10,9 @@ namespace MAUI_LDDP
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new Page_Connexion());
+			var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+
+			MainPage = new NavigationPage(new Page_Connexion(database));
 		}
 	}
 }

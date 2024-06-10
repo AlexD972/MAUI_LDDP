@@ -1,5 +1,6 @@
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
+using Google.Cloud.Firestore;
 
 namespace MAUI_LDDP.Pages;
 
@@ -43,6 +44,8 @@ public partial class Page_Inscription : ContentPage
 
 	private void Button_Connexion_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Page_Connexion(), false);
+		var database = ServiceHelper.ServiceProvider.GetService<FirestoreDb>();
+
+		Navigation.PushAsync(new Page_Connexion(database), false);
 	}
 }

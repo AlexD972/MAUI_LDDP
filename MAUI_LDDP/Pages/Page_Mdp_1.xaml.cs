@@ -1,3 +1,5 @@
+using Google.Cloud.Firestore;
+
 namespace MAUI_LDDP.Pages;
 
 public partial class Page_Mdp_1 : ContentPage
@@ -24,7 +26,9 @@ public partial class Page_Mdp_1 : ContentPage
 
 	private void Button_Connexion_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Page_Connexion(), false);
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+
+		Navigation.PushAsync(new Page_Connexion(database), false);
 	}
 
 	private void Button_Reinitialiser_Clicked(object sender, EventArgs e)

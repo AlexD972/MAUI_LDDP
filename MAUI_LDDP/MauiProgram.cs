@@ -4,6 +4,7 @@ using Firebase.Auth.Repository;
 using Firebase.Auth;
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
+using Google.Cloud.Firestore;
 
 
 namespace MAUI_LDDP
@@ -28,6 +29,25 @@ namespace MAUI_LDDP
 			builder.Logging.AddDebug();
 #endif
 
+			// Lecture du json de configuration de Firebase
+			using (var stream = FileSystem.OpenAppPackageFileAsync("ionicapp.json").GetAwaiter().GetResult())
+			{
+				// Définit un repertoire local pour le fichier
+				var localFilePath = Path.Combine(FileSystem.CacheDirectory, "ionicapp.json");
+
+				// Sauvegarde le fichier dans le repertoire local
+				using (var fileStream = File.Create(localFilePath))
+				{
+					stream.CopyTo(fileStream);
+				} 
+
+				// Définit la variable d'environnement pour le fichier de configuration
+				Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", localFilePath);
+			}
+
+			// Initialisation de FireStore avec l'id du projet firestore
+			FirestoreDb database = FirestoreDb.Create("ionicapp-71182");
+
 			var config = new FirebaseAuthConfig
 			{
 				ApiKey = "AIzaSyD7q-kS4aVMTfy0UDFsLvSIl5_iJGMnMzc",
@@ -43,6 +63,9 @@ namespace MAUI_LDDP
 			var client = new Firebase.Auth.FirebaseAuthClient(config);
 			builder.Services.AddSingleton(client);
 			builder.Services.AddSingleton<FirebaseAuthService>();
+
+			//FireStore
+			builder.Services.AddSingleton(database);
 
 			var app = builder.Build();
 			ServiceHelper.ServiceProvider = app.Services;

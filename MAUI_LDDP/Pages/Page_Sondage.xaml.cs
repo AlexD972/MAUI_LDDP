@@ -6,11 +6,11 @@ using Microsoft.Maui.Graphics;
 
 namespace MAUI_LDDP.Pages;
 
-public partial class Page_Accueil : ContentPage
+public partial class Page_Sondage : ContentPage
 {
 	private readonly FirestoreDb _database;
 
-	public Page_Accueil(FirestoreDb database)
+	public Page_Sondage(FirestoreDb database)
 	{
 		_database = database;
 		InitializeComponent();
@@ -122,16 +122,6 @@ public partial class Page_Accueil : ContentPage
 		Liste_Sondage.ItemsSource = sondages;
 
 	}
-
-	private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-	{
-		if (e.SelectedItem == null)
-			return;
-
-		// Déséléctionne l'élément
-		((ListView)sender).SelectedItem = null;
-	}
-
 
 
 	protected override bool OnBackButtonPressed()

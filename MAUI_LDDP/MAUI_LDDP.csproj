@@ -62,6 +62,7 @@
 	  <None Remove="Resources\Fonts\Ribeye-Regular.ttf" />
 	  <None Remove="Resources\Images\logo_aide50.png" />
 	  <None Remove="Resources\Images\logo_bouclier50.png" />
+	  <None Remove="Resources\Images\logo_close.png" />
 	  <None Remove="Resources\Images\logo_document50.png" />
 	  <None Remove="Resources\Images\logo_document_ok30.png" />
 	  <None Remove="Resources\Images\logo_erreur50.png" />
@@ -90,6 +91,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\Page_Sondage.xaml.cs">
+	    <DependentUpon>Page_Sondage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Page_Creation_Sondage.xaml.cs">
 	    <DependentUpon>Page_Creation_Sondage.xaml</DependentUpon>
 	  </Compile>
@@ -99,6 +103,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Page_Sondage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Page_Creation_Sondage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

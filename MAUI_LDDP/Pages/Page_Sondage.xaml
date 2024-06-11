@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MAUI_LDDP.Convertisseurs"
-             x:Class="MAUI_LDDP.Pages.Page_Accueil"
+             x:Class="MAUI_LDDP.Pages.Page_Sondage"
              Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
     
     <ContentPage.Resources>
@@ -22,10 +22,10 @@
             <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Sondages" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameJ}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-        <ListView x:Name="Liste_Sondage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding sondages}" ItemSelected="OnItemSelected">
+        <ListView x:Name="Liste_Sondage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding propositions}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -33,16 +33,9 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding NameJ}" TextColor="Black" Padding="5,0,0,0"/>
-                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding DateJ, Converter={StaticResource DateToStringConverter}}" TextColor="Black" Padding="5,0,0,0"/>
-                            <Button Grid.Column="1" Grid.RowSpan="2" Text="Partager" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_partager50.png"/>
-                            <Button Grid.Column="2" Grid.RowSpan="2" Text="Terminer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_document_ok30.png" IsVisible="{Binding IsCurrentUserCreator}" />
+                            <Label Grid.Column="0" Text="{Binding NameP}" TextColor="Black" Padding="5,0,0,0"/>
+                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -60,8 +53,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="0" Text="Créer un sondage" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
-            <Button Grid.Column="1" Grid.Row="0" Text="Ajouter un sondage" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Camera_Clicked" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Button Grid.Column="0" Grid.Row="0" Text="Ajouter une proposition" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Button Grid.Column="1" Grid.Row="0" Text="Voter" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Camera_Clicked" HorizontalOptions="End" VerticalOptions="Center"/>
 
 
 
@@ -79,10 +72,10 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Column="1" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="1" Grid.Row="1" Text="Sondages" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
 
                 <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="3" Grid.Row="1" Text="Paramètres" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="3" Grid.Row="1" Text="Paramètres du sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>

@@ -13,6 +13,7 @@ namespace MAUI_LDDP.Services
 		public bool Fini { get; set; }
 		public string NameJ { get; set; }
 		public string Token { get; set; }
+		public bool IsCurrentUserCreator { get; set; }
 	}
 
 }

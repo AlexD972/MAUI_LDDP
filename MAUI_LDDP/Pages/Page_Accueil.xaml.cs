@@ -1,4 +1,5 @@
 using Google.Cloud.Firestore;
+using MAUI_LDDP.Services;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
@@ -7,9 +8,11 @@ namespace MAUI_LDDP.Pages;
 
 public partial class Page_Accueil : ContentPage
 {
+	private readonly FirestoreDb _database;
 
-	public Page_Accueil()
+	public Page_Accueil(FirestoreDb database)
 	{
+		_database = database;
 		InitializeComponent();
 		
 	}
@@ -35,14 +38,43 @@ public partial class Page_Accueil : ContentPage
 				await Navigation.PushAsync(new Page_Creation_Sondage(database, pollName), false);
 			}
 		});
-		Navigation.PushAsync(new Page_Accueil(), false);
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		Navigation.PushAsync(new Page_Accueil(database), false);
 	}
 
 	private void Button_Camera_Clicked(object sender, EventArgs e)
 	{
 		Navigation.PushAsync(new Page_Camera(), false);
 	}
-	
+
+	private async void Button_Refresh_Clicked(object sender, EventArgs e)
+	{
+		CollectionReference collRef = _database.Collection("Journee");
+		QuerySnapshot snapshot = await collRef.GetSnapshotAsync();
+
+		List<Sondage> sondages = new List<Sondage>();
+		foreach (DocumentSnapshot document in snapshot.Documents)
+		{
+			if (document.Exists)
+			{
+				Dictionary<string, object> data = document.ToDictionary();
+
+				Sondage sondage = new Sondage
+				{
+					Createur = data["Createur"] as string,
+					DateJ = data["DateJ"] is DateTime dateTime ? dateTime : DateTime.MinValue,
+					Fini = data["Fini"] is bool fini ? fini : false,
+					NameJ = data["NameJ"] as string,
+					Token = data["Token"] as string
+				};
+
+				sondages.Add(sondage);
+			}
+		}
+		Liste_Sondage.ItemsSource = sondages;
+
+	}
+
 
 	protected override bool OnBackButtonPressed()
 	{

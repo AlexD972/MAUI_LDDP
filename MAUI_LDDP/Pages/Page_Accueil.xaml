@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Sondages" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+        <!--<Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -28,7 +28,15 @@
             <Label Grid.Row="0" Text="1) Sondage 1" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
             <Label Grid.Row="1" Text="2) Sondage 2" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
             <Label Grid.Row="2" Text="3) Sondage 3" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-        </Grid>
+        </Grid>-->
+        <ListView x:Name="Liste_Sondage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding sondages}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding NameJ}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
 
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

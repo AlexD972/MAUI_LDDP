@@ -55,7 +55,8 @@ public partial class Page_Connexion : ContentPage
 		{
 			// Affectation de l'UID de l'utilisateur connecté à la variable globale
 			GlobalUID.UserUID = result;
-			await Navigation.PushAsync(new Page_Accueil());
+			var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+			await Navigation.PushAsync(new Page_Accueil(database));
 		}
 		else
 		{

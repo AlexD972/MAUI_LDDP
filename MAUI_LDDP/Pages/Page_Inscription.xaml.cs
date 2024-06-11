@@ -34,7 +34,8 @@ public partial class Page_Inscription : ContentPage
 
 		if (!string.IsNullOrWhiteSpace(result) && !result.Contains(" "))
 		{
-			await Navigation.PushAsync(new Page_Accueil());
+			var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+			await Navigation.PushAsync(new Page_Accueil(database));
 		}
 		else
 		{

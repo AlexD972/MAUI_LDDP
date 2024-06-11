@@ -1,3 +1,4 @@
+using Google.Cloud.Firestore;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
@@ -13,7 +14,8 @@ public partial class Page_A_propos : ContentPage
 
 	private void Button_Accueil_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Page_Accueil(), false);
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		Navigation.PushAsync(new Page_Accueil(database), false);
 	}
 
 	private void Button_Parametres_Clicked(object sender, EventArgs e)

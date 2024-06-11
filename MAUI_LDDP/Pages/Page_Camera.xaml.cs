@@ -35,11 +35,7 @@ public partial class Page_Camera : ContentPage
 
 		Dispatcher.Dispatch(async () =>
 		{
-			var result = await this.DisplayAlert("Confirmation", "Voulez-vous ajouter un sondage avec un code ?", "Oui", "Non");
-			if (result)
-			{
-				//Navigation.PushAsync(new Page_Parametres(), false);
-			}
+			string token = await this.DisplayPromptAsync("Ajouter un sondage", "Veuillez entrer le code d'accès du sondage", "OK", "Annuler");
 		});
 		//Navigation.PushAsync(new Page_Accueil(), false);
 	}

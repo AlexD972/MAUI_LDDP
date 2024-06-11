@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_LDDP.Pages.Page_A_propos"
+             Title="Page_A_propos" Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="25*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="À propos" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+        <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,10,0">
+            <Label Text="Présentation :"
+                   FontAttributes="Bold"
+                   TextColor="Black" 
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+            
+            <Label Text="L'application La Dictature du Plaisir est une application de choix sociale." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Elle permet de réaliser des sondages pour l'organisation de journée et de soirée." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand"/>
+            
+            <Label Text="Utilisation :"
+                   FontAttributes="Bold"
+                   TextColor="Black" 
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+
+            <Label Text="L'organisateur peut créer plusieurs propositions d'organisation d'une même journée et la soumettre à un vote." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand"/>
+            
+            <Label Text="Un utilisateur peut accéder au sondage grâce à un système de QR Code ou directement avec un code que l'organisateur peut fournir." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand"/>
+            
+            <Label Text="Le système de vote fonctionne par ordre de préférence des journée." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="EndAndExpand"/>
+            
+            <Label Text="C'est une application Android développée sur le framework MAUI .NET." 
+                   TextColor="Black" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+        
+        <!--Section navigation-->
+        <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+           
+            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#D4F0F2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_sondage.png" Clicked="Button_Accueil_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="Sondages" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_Accueil_Clicked"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Button Grid.Column="3" Grid.Row="0" Background="#82D9FF" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="3" Grid.Row="1" Text="Paramètres" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

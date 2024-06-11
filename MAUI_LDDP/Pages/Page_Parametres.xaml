@@ -33,7 +33,12 @@
 
             <Button Grid.Row="3" Text="Mentions légales et politiques" IsEnabled="False" FontSize="Medium" TextColor="Black" Background="Transparent" ImageSource="logo_document50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
 
-            <Button Grid.Row="4" Text="À propos" FontSize="Medium" IsEnabled="False" TextColor="Black" Background="Transparent" ImageSource="logo_information50.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Button Grid.Row="4" Text="À propos" FontSize="Medium" IsEnabled="False" TextColor="Black" Background="Transparent" ImageSource="logo_information50.png" Clicked="Button_A_propos_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Grid Grid.Row="4">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Button_A_propos_Clicked"/>
+                </Grid.GestureRecognizers>
+            </Grid>
         </Grid>
 
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">

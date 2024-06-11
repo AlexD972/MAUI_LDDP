@@ -28,7 +28,7 @@ public partial class Page_Accueil : ContentPage
 			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer un sondage ?", "Oui", "Non");
 			if (result)
 			{
-				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom du sondage");
+				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom du sondage", "OK", "Annuler");
 				// Naviguez vers la nouvelle page pour choisir la date
 				var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
 

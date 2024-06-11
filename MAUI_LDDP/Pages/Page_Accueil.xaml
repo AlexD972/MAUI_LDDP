@@ -17,22 +17,22 @@
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Sondages" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-        <!--<Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Text="1) Sondage 1" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="1" Text="2) Sondage 2" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-            <Label Grid.Row="2" Text="3) Sondage 3" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-        </Grid>-->
         <ListView x:Name="Liste_Sondage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding sondages}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding NameJ}"/>
+                    <!--<TextCell Text="{Binding NameJ}"/>-->
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding NameJ}" TextColor="Black" Margin="10"/>
+                            <Button Grid.Column="1" Text="Partager" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_partager50.png" />
+                            <Button Grid.Column="2" Text="Terminer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_document_ok30.png" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -14,7 +14,8 @@ public partial class Page_Accueil : ContentPage
 	{
 		_database = database;
 		InitializeComponent();
-		
+		//Affichage de la liste des sondages dès l'ouverture de la page
+		Button_Refresh_Clicked(null, null);
 	}
 
 	private void Button_Parametres_Clicked(object sender, EventArgs e)
@@ -59,16 +60,19 @@ public partial class Page_Accueil : ContentPage
 			{
 				Dictionary<string, object> data = document.ToDictionary();
 
-				Sondage sondage = new Sondage
+				if (data["Createur"] as string == GlobalUID.UserUID)
 				{
-					Createur = data["Createur"] as string,
-					DateJ = data["DateJ"] is DateTime dateTime ? dateTime : DateTime.MinValue,
-					Fini = data["Fini"] is bool fini ? fini : false,
-					NameJ = data["NameJ"] as string,
-					Token = data["Token"] as string
-				};
+					Sondage sondage = new Sondage
+					{
+						Createur = data["Createur"] as string,
+						DateJ = data["DateJ"] is DateTime dateTime ? dateTime : DateTime.MinValue,
+						Fini = data["Fini"] is bool fini ? fini : false,
+						NameJ = data["NameJ"] as string,
+						Token = data["Token"] as string
+					};
 
-				sondages.Add(sondage);
+					sondages.Add(sondage);
+				}
 			}
 		}
 		Liste_Sondage.ItemsSource = sondages;

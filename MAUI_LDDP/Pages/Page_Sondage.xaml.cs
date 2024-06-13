@@ -10,7 +10,7 @@ public partial class Page_Sondage : ContentPage
 {
 	private readonly FirestoreDb _database;
 
-	public Page_Sondage(FirestoreDb database)
+	public Page_Sondage(FirestoreDb database, Sondage sondage_token)
 	{
 		_database = database;
 		InitializeComponent();

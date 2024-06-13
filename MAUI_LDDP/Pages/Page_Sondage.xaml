@@ -4,12 +4,6 @@
              xmlns:local="clr-namespace:MAUI_LDDP.Convertisseurs"
              x:Class="MAUI_LDDP.Pages.Page_Sondage"
              Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:DateToStringConverter x:Key="DateToStringConverter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,6 +16,7 @@
             <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
 
+        <!--A CONTINUER-->
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameJ}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
@@ -41,8 +36,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <!--JUSQU'ICI-->
 
-
+        <!--REVOIR LES PAGES RESULTATS ET PARAMETRES-->
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

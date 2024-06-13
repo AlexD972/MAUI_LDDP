@@ -39,6 +39,9 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
+                            </Grid.GestureRecognizers>-->
                             <Label Grid.Column="0" Grid.Row="0" Text="{Binding NameJ}" TextColor="Black" Padding="5,0,0,0"/>
                             <Label Grid.Column="0" Grid.Row="1" Text="{Binding DateJ, Converter={StaticResource DateToStringConverter}}" TextColor="Black" Padding="5,0,0,0"/>
                             <Button Grid.Column="1" Grid.RowSpan="2" Text="Partager" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_partager50.png"/>

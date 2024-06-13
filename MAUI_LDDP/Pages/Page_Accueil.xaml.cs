@@ -129,11 +129,24 @@ public partial class Page_Accueil : ContentPage
 	//Enlève la sélection de l'élément après un appui, une couleur orange désagréable apparaissait sinon
 	private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 	{
-		if (e.SelectedItem == null)
+		var sondage = (Sondage)e.SelectedItem;
+		if (sondage == null)
 			return;
 
-		// Déséléctionne l'élément
-		((ListView)sender).SelectedItem = null;
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+
+		// Naviguer vers une nouvelle page
+		Navigation.PushAsync(new Page_Sondage(database, sondage));
+
+		// Désélectionner l'élément
+		Liste_Sondage.SelectedItem = null;
+
+		//Ancien code
+		//if (e.SelectedItem == null)
+		//	return;
+
+		//// Déséléctionne l'élément
+		//((ListView)sender).SelectedItem = null;
 	}
 
 

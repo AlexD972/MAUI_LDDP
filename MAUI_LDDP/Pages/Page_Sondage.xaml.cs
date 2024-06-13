@@ -14,7 +14,7 @@ public partial class Page_Sondage : ContentPage
 	{
 		_database = database;
 		InitializeComponent();
-		//Affichage de la liste des sondages dès l'ouverture de la page
+		//Affichage de la liste des propositions dès l'ouverture de la page
 		Button_Refresh_Clicked(null, null);
 	}
 

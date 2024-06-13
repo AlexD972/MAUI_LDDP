@@ -10,6 +10,7 @@ public partial class Page_Accueil : ContentPage
 {
 	private readonly FirestoreDb _database;
 
+	//Constructeur de la page d'accueil
 	public Page_Accueil(FirestoreDb database)
 	{
 		_database = database;
@@ -18,12 +19,14 @@ public partial class Page_Accueil : ContentPage
 		Button_Refresh_Clicked(null, null);
 	}
 
+	//Navigue vers la page des paramètres du compte
 	private void Button_Parametres_Clicked(object sender, EventArgs e)
 	{
 		Navigation.PushAsync(new Page_Parametres(), false);
 
 	}
 
+	//Navigue vers la page de création de sondage
 	private void Button_Create_Clicked(object sender, EventArgs e)
 	{
 		
@@ -43,12 +46,14 @@ public partial class Page_Accueil : ContentPage
 		Navigation.PushAsync(new Page_Accueil(database), false);
 	}
 
+	//Navigue vers la page de la caméra
 	private void Button_Camera_Clicked(object sender, EventArgs e)
 	{
 		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
 		Navigation.PushAsync(new Page_Camera(database), false);
 	}
 
+	//Récupère les sondages créés par l'utilisateur et ceux auxquels il a été invité
 	private async void Button_Refresh_Clicked(object sender, EventArgs e)
 	{
 		CollectionReference journee_coll = _database.Collection("Journee");
@@ -118,11 +123,10 @@ public partial class Page_Accueil : ContentPage
 				}
 			}
 		}
-
 		Liste_Sondage.ItemsSource = sondages;
-
 	}
 
+	//Enlève la sélection de l'élément après un appui, une couleur orange désagréable apparaissait sinon
 	private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 	{
 		if (e.SelectedItem == null)
@@ -133,7 +137,7 @@ public partial class Page_Accueil : ContentPage
 	}
 
 
-
+	// Méthode pour quitter l'application en appuyant sur le bouton retour
 	protected override bool OnBackButtonPressed()
 	{
 		Dispatcher.Dispatch(async () =>

@@ -136,4 +136,9 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Pages\Accueil\Parametres\" />
+	  <Folder Include="Pages\Sondage\" />
+	</ItemGroup>
+
 </Project>

@@ -1,8 +1,9 @@
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
+using MAUI_LDDP.Pages.Accueil;
 using Google.Cloud.Firestore;
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Connexion_Inscription;
 
 public partial class Page_Inscription : ContentPage
 {

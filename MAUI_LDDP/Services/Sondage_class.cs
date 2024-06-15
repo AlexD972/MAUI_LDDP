@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MAUI_LDDP.Services
 {
-	public class Sondage
+	public class Sondage_class
 	{
 		public string Createur { get; set; }
 		public DateTime DateJ { get; set; }

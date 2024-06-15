@@ -1,16 +1,18 @@
 using Google.Cloud.Firestore;
-using MAUI_LDDP.Services;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
-namespace MAUI_LDDP.Pages;
+using MAUI_LDDP.Services;
+using MAUI_LDDP.Pages.Accueil;
+
+namespace MAUI_LDDP.Pages.Sondage;
 
 public partial class Page_Sondage : ContentPage
 {
 	private readonly FirestoreDb _database;
 
-	public Page_Sondage(FirestoreDb database, Sondage sondage_token)
+	public Page_Sondage(FirestoreDb database, Sondage_class sondage_token)
 	{
 		_database = database;
 		InitializeComponent();
@@ -29,10 +31,10 @@ public partial class Page_Sondage : ContentPage
 		
 		Dispatcher.Dispatch(async () =>
 		{
-			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer un sondage ?", "Oui", "Non");
+			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer une proposition ?", "Oui", "Non");
 			if (result)
 			{
-				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom du sondage", "OK", "Annuler");
+				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom de la proposition", "OK", "Annuler");
 				// Naviguez vers la nouvelle page pour choisir la date
 				var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
 
@@ -57,7 +59,7 @@ public partial class Page_Sondage : ContentPage
 		CollectionReference user_coll = _database.Collection("User");
 		QuerySnapshot snapshot_user = await user_coll.GetSnapshotAsync();
 
-		List<Sondage> sondages = new List<Sondage>();
+		List<Sondage_class> sondages = new List<Sondage_class>();
 
 		// Parcours des documents de la collection Journee afin d'ajouter les sondages créés par l'utilisateur
 		foreach (DocumentSnapshot document in snapshot_journee.Documents)
@@ -68,7 +70,7 @@ public partial class Page_Sondage : ContentPage
 
 				if (data["Createur"] as string == GlobalUID.UserUID)
 				{
-					Sondage sondage = new Sondage
+					Sondage_class sondage = new Sondage_class
 					{
 						Createur = data["Createur"] as string,
 						DateJ = data["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,
@@ -101,7 +103,7 @@ public partial class Page_Sondage : ContentPage
 					{
 						Dictionary<string, object> data_journee = snapshot_journee2.ToDictionary();
 
-						Sondage sondage = new Sondage
+						Sondage_class sondage = new Sondage_class
 						{
 							Createur = data_journee["Createur"] as string,
 							DateJ = data_journee["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,

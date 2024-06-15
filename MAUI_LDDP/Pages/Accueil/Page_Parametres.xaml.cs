@@ -3,11 +3,11 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Accueil;
 
-public partial class Page_A_propos : ContentPage
+public partial class Page_Parametres : ContentPage
 {
-	public Page_A_propos()
+	public Page_Parametres()
 	{
 		InitializeComponent();
 	}
@@ -18,9 +18,8 @@ public partial class Page_A_propos : ContentPage
 		Navigation.PushAsync(new Page_Accueil(database), false);
 	}
 
-	private void Button_Parametres_Clicked(object sender, EventArgs e)
+	private void Button_A_propos_Clicked(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Page_Parametres(), false);
-
+		Navigation.PushAsync(new Page_A_propos(), false);
 	}
 }

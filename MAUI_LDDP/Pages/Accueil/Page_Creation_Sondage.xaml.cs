@@ -4,7 +4,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Accueil;
 
 public partial class Page_Creation_Sondage : ContentPage
 {

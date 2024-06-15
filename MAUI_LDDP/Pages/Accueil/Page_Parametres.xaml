@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI_LDDP.Pages.Page_Parametres"
+             x:Class="MAUI_LDDP.Pages.Accueil.Page_Parametres"
              Title="Page_Parametres" Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
     <Grid>
         <Grid.ColumnDefinitions>

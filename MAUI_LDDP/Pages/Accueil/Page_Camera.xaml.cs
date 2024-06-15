@@ -2,7 +2,7 @@ using Camera.MAUI;
 using Google.Cloud.Firestore;
 using MAUI_LDDP.Services;
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Accueil;
 
 public partial class Page_Camera : ContentPage
 {

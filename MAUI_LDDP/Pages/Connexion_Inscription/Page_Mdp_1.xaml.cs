@@ -1,6 +1,6 @@
 using Google.Cloud.Firestore;
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Connexion_Inscription;
 
 public partial class Page_Mdp_1 : ContentPage
 {

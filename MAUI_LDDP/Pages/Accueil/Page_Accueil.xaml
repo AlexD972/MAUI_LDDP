@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MAUI_LDDP.Convertisseurs"
-             x:Class="MAUI_LDDP.Pages.Page_Accueil"
+             x:Class="MAUI_LDDP.Pages.Accueil.Page_Accueil"
              Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
     
     <ContentPage.Resources>

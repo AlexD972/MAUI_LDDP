@@ -1,10 +1,12 @@
 using Google.Cloud.Firestore;
-using MAUI_LDDP.Services;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
-namespace MAUI_LDDP.Pages;
+using MAUI_LDDP.Services;
+using MAUI_LDDP.Pages.Sondage;
+
+namespace MAUI_LDDP.Pages.Accueil;
 
 public partial class Page_Accueil : ContentPage
 {
@@ -62,7 +64,7 @@ public partial class Page_Accueil : ContentPage
 		CollectionReference user_coll = _database.Collection("User");
 		QuerySnapshot snapshot_user = await user_coll.GetSnapshotAsync();
 
-		List<Sondage> sondages = new List<Sondage>();
+		List<Sondage_class> sondages = new List<Sondage_class>();
 
 		// Parcours des documents de la collection Journee afin d'ajouter les sondages créés par l'utilisateur
 		foreach (DocumentSnapshot document in snapshot_journee.Documents)
@@ -73,7 +75,7 @@ public partial class Page_Accueil : ContentPage
 
 				if (data["Createur"] as string == GlobalUID.UserUID)
 				{
-					Sondage sondage = new Sondage
+					Sondage_class sondage = new Sondage_class
 					{
 						Createur = data["Createur"] as string,
 						DateJ = data["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,
@@ -106,7 +108,7 @@ public partial class Page_Accueil : ContentPage
 					{
 						Dictionary<string, object> data_journee = snapshot_journee2.ToDictionary();
 
-						Sondage sondage = new Sondage
+						Sondage_class sondage = new Sondage_class
 						{
 							Createur = data_journee["Createur"] as string,
 							DateJ = data_journee["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,
@@ -129,7 +131,7 @@ public partial class Page_Accueil : ContentPage
 	//Enlève la sélection de l'élément après un appui, une couleur orange désagréable apparaissait sinon
 	private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 	{
-		var sondage = (Sondage)e.SelectedItem;
+		var sondage = (Sondage_class)e.SelectedItem;
 		if (sondage == null)
 			return;
 

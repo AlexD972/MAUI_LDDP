@@ -1,5 +1,6 @@
 using MAUI_LDDP.Services;
 using MAUI_LDDP.Helpers;
+using MAUI_LDDP.Pages.Accueil;
 
 using System.IO;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Google.Cloud.Firestore;
 using Firebase.Auth;
 
 
-namespace MAUI_LDDP.Pages;
+namespace MAUI_LDDP.Pages.Connexion_Inscription;
 
 public partial class Page_Connexion : ContentPage
 {

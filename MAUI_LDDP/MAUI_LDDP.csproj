@@ -92,53 +92,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\Page_Sondage.xaml.cs">
+	  <Compile Update="Pages\Sondage\Page_Sondage.xaml.cs">
 	    <DependentUpon>Page_Sondage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\Page_Creation_Sondage.xaml.cs">
+	  <Compile Update="Pages\Accueil\Page_Creation_Sondage.xaml.cs">
 	    <DependentUpon>Page_Creation_Sondage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\Page_A_propos.xaml.cs">
+	  <Compile Update="Pages\Accueil\Parametres\Page_A_propos.xaml.cs">
 	    <DependentUpon>Page_A_propos.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\Page_Sondage.xaml">
+	  <MauiXaml Update="Pages\Sondage\Page_Sondage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Creation_Sondage.xaml">
+	  <MauiXaml Update="Pages\Accueil\Page_Creation_Sondage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Accueil.xaml">
+	  <MauiXaml Update="Pages\Accueil\Page_Accueil.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Camera.xaml">
+	  <MauiXaml Update="Pages\Accueil\Page_Camera.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Connexion.xaml">
+	  <MauiXaml Update="Pages\Connexion_Inscription\Page_Connexion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Inscription.xaml">
+	  <MauiXaml Update="Pages\Connexion_Inscription\Page_Inscription.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Mdp_1.xaml">
+	  <MauiXaml Update="Pages\Connexion_Inscription\Page_Mdp_1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Mdp_2.xaml">
+	  <MauiXaml Update="Pages\Connexion_Inscription\Page_Mdp_2.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_A_propos.xaml">
+	  <MauiXaml Update="Pages\Accueil\Parametres\Page_A_propos.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Page_Parametres.xaml">
+	  <MauiXaml Update="Pages\Accueil\Page_Parametres.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Pages\Accueil\Parametres\" />
-	  <Folder Include="Pages\Sondage\" />
 	</ItemGroup>
 
 </Project>

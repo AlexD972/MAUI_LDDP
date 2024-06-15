@@ -31,7 +31,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{Binding NameP}" TextColor="Black" Padding="5,0,0,0"/>
-                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png" IsVisible="{Binding IsCurrentUserCreator}"/>
+                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png" Clicked="Button_Delete_Clicked" CommandParameter="{Binding .}" IsVisible="{Binding IsCurrentUserCreator}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -50,7 +50,7 @@
             
             <!--Boutons pour ajouter une proposition et voter-->
             <Button Grid.Column="0" Grid.Row="0" Text="Ajouter une proposition" LineBreakMode="WordWrap" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsCurrentUserCreator}"/>
-            <Button Grid.Column="1" Grid.Row="0" Text="Voter" TextColor="Black" Background="#82D9FF" ImageSource="logo_document_ok30.png" Clicked="Button_Camera_Clicked" HorizontalOptions="End" VerticalOptions="Center"/>
+            <Button Grid.Column="1" Grid.Row="0" Text="Voter" TextColor="Black" Background="#82D9FF" ImageSource="logo_document_ok30.png" HorizontalOptions="End" VerticalOptions="Center"/>
 
 
 

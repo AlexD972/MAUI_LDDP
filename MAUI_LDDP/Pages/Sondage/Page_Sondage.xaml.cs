@@ -82,16 +82,34 @@ public partial class Page_Sondage : ContentPage
 				Button_Refresh_Clicked(null, null);
 			}
 		});
-		//var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>(); 
-		//Navigation.PushAsync(new Page_Sondage(database, sondage_info, _isCurrentUserCreator), false);
 		Button_Refresh_Clicked(null, null);
 	}
 
-	//Navigue vers la page de la caméra
-	private void Button_Camera_Clicked(object sender, EventArgs e)
+	private void Button_Delete_Clicked(object sender, EventArgs e)
 	{
-		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
-		Navigation.PushAsync(new Page_Camera(database), false);
+		//var proposition = (Proposition_class)e.SelectedItem;
+		//if (proposition == null)
+		//	return;
+		var button = (Button)sender;
+		var proposition = (Proposition_class)button.CommandParameter;
+
+		Dispatcher.Dispatch(async () =>
+		{
+			var result = await this.DisplayAlert("Confirmation", "Voulez-vous supprimer la proposition ?", "Oui", "Non");
+			if (result)
+			{
+				// Créer une référence à la collection Proposition
+				CollectionReference coll = _database.Collection("Proposition");
+
+				// Créer une référence au document que vous voulez supprimer
+				DocumentReference docRef = coll.Document(proposition.Token + "_" + proposition.IdP);
+
+				// Supprimer le document
+				await docRef.DeleteAsync();
+				Button_Refresh_Clicked(null, null);
+			}
+		});
+		Button_Refresh_Clicked(null, null);
 	}
 
 	//Récupère les propositions du sondage

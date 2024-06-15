@@ -11,24 +11,43 @@ namespace MAUI_LDDP.Pages.Sondage;
 public partial class Page_Sondage : ContentPage
 {
 	private readonly FirestoreDb _database;
+	private Sondage_class sondage_info;
 
-	public Page_Sondage(FirestoreDb database, Sondage_class sondage_token)
+	private bool _isCurrentUserCreator;
+
+	public string NameJ { get; private set; }
+	public string Token { get; private set; }
+
+	public Page_Sondage(FirestoreDb database, Sondage_class sondage_token, bool isCurrentUserCreator)
 	{
 		_database = database;
 		InitializeComponent();
+		//Récupération des informations du sondage
+		Sondage_class sondage_info = new Sondage_class
+		{
+			Createur = sondage_token.Createur,
+			DateJ = sondage_token.DateJ,
+			Fini = sondage_token.Fini,
+			NameJ = sondage_token.NameJ,
+			Token = sondage_token.Token
+		};
+		NameJ = sondage_token.NameJ;
+		Token = sondage_token.Token;
 		//Affichage de la liste des propositions dès l'ouverture de la page
 		Button_Refresh_Clicked(null, null);
+		_isCurrentUserCreator = isCurrentUserCreator;
+
+		//Liaison des données de la page avec les données du sondage
+		this.BindingContext = this;
 	}
 
 	private void Button_Parametres_Clicked(object sender, EventArgs e)
 	{
 		Navigation.PushAsync(new Page_Parametres(), false);
-
 	}
 
 	private void Button_Create_Clicked(object sender, EventArgs e)
 	{
-		
 		Dispatcher.Dispatch(async () =>
 		{
 			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer une proposition ?", "Oui", "Non");
@@ -38,104 +57,57 @@ public partial class Page_Sondage : ContentPage
 				// Naviguez vers la nouvelle page pour choisir la date
 				var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
 
-				await Navigation.PushAsync(new Page_Creation_Sondage(database, pollName), false);
+				//REMPLACER PAR CREATION PROPOSITION
+				//await Navigation.PushAsync(new Page_Creation_Sondage(database, pollName), false);
 			}
 		});
-		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
-		Navigation.PushAsync(new Page_Accueil(database), false);
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>(); 
+		Navigation.PushAsync(new Page_Sondage(database, sondage_info, _isCurrentUserCreator), false);
 	}
 
+	//Navigue vers la page de la caméra
 	private void Button_Camera_Clicked(object sender, EventArgs e)
 	{
 		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
 		Navigation.PushAsync(new Page_Camera(database), false);
 	}
 
+	//Récupère les propositions du sondage
 	private async void Button_Refresh_Clicked(object sender, EventArgs e)
 	{
-		CollectionReference journee_coll = _database.Collection("Journee");
-		QuerySnapshot snapshot_journee = await journee_coll.GetSnapshotAsync();
+		// ActivityIndicator actif
+		loadingIndicator.IsRunning = true;
+		loadingIndicator.IsVisible = true;
 
-		CollectionReference user_coll = _database.Collection("User");
-		QuerySnapshot snapshot_user = await user_coll.GetSnapshotAsync();
+		CollectionReference proposition_coll = _database.Collection("Proposition");
+		QuerySnapshot snapshot_proposition = await proposition_coll.GetSnapshotAsync();
 
-		List<Sondage_class> sondages = new List<Sondage_class>();
+		List<Proposition_class> propositions = new List<Proposition_class>();
 
-		// Parcours des documents de la collection Journee afin d'ajouter les sondages créés par l'utilisateur
-		foreach (DocumentSnapshot document in snapshot_journee.Documents)
+		// Parcours des documents de la collection Proposition afin d'afficher les propositions du sondage selectionné
+		foreach (DocumentSnapshot document in snapshot_proposition.Documents)
 		{
 			if (document.Exists)
 			{
 				Dictionary<string, object> data = document.ToDictionary();
 
-				if (data["Createur"] as string == GlobalUID.UserUID)
+				if (data["Token"] as string == Token)
 				{
-					Sondage_class sondage = new Sondage_class
+					Proposition_class proposition = new Proposition_class
 					{
-						Createur = data["Createur"] as string,
-						DateJ = data["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,
-						Fini = data["Fini"] is bool fini ? fini : false,
-						NameJ = data["NameJ"] as string,
-						Token = data["Token"] as string,
-						IsCurrentUserCreator = GlobalUID.UserUID == (data["Createur"] as string)
+						IdP = Convert.ToInt32(data["IdP"]),
+						NameP = data["NameP"] as string,
+						Token = data["Token"] as string
 					};
 
-					sondages.Add(sondage);
+					propositions.Add(proposition);
 				}
 			}
 		}
-		// Parcours des documents de la collection User afin d'ajouter les sondages auxquels l'utilisateur a été invité
-		foreach (DocumentSnapshot document in snapshot_user.Documents)
-		{
-			if (document.Exists)
-			{
-				Dictionary<string, object> data = document.ToDictionary();
+		Liste_Proposition.ItemsSource = propositions;
 
-				if (data["IdUser"] as string == GlobalUID.UserUID)
-				{
-					string token = data["Token"] as string;
-
-					// Récupérez le document du sondage à partir de la collection "Journee" en utilisant le token
-					DocumentReference docRef = _database.Collection("Journee").Document(token);
-					DocumentSnapshot snapshot_journee2 = await docRef.GetSnapshotAsync();
-
-					if (snapshot_journee2.Exists)
-					{
-						Dictionary<string, object> data_journee = snapshot_journee2.ToDictionary();
-
-						Sondage_class sondage = new Sondage_class
-						{
-							Createur = data_journee["Createur"] as string,
-							DateJ = data_journee["DateJ"] is Timestamp timestamp ? timestamp.ToDateTime() : DateTime.MinValue,
-							Fini = data_journee["Fini"] is bool fini ? fini : false,
-							NameJ = data_journee["NameJ"] as string,
-							Token = data_journee["Token"] as string
-						};
-						//Vérification afin d'éviter les doublons
-						if (!sondages.Exists(s => s.Token == sondage.Token))
-						{
-							sondages.Add(sondage);
-						}
-					}
-				}
-			}
-		}
-
-		Liste_Sondage.ItemsSource = sondages;
-
-	}
-
-
-	protected override bool OnBackButtonPressed()
-	{
-		Dispatcher.Dispatch(async () =>
-		{
-			var result = await this.DisplayAlert("Confirmation", "Voulez-vous vraiment quitter l'application ?", "Oui", "Non");
-			if (result)
-			{
-				Environment.Exit(0);
-			}
-		});
-		return true;
+		// ActivityIndicator inactif
+		loadingIndicator.IsRunning = false;
+		loadingIndicator.IsVisible = false;
 	}
 }

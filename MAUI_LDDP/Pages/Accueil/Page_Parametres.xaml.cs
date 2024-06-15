@@ -3,6 +3,8 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
+using MAUI_LDDP.Pages.Accueil.Parametres;
+
 namespace MAUI_LDDP.Pages.Accueil;
 
 public partial class Page_Parametres : ContentPage

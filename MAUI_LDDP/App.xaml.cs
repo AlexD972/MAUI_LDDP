@@ -1,4 +1,4 @@
-﻿using MAUI_LDDP.Pages;
+﻿using MAUI_LDDP.Pages.Connexion_Inscription;
 using Google.Cloud.Firestore;
 using Microsoft.Extensions.DependencyInjection;
 

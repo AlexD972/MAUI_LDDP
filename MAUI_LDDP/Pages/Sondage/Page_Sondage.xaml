@@ -16,11 +16,12 @@
             <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
 
-        <!--A CONTINUER-->
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameJ}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-        <ListView x:Name="Liste_Sondage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding propositions}">
+        <ActivityIndicator x:Name="loadingIndicator" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Color="#82D9FF" IsRunning="False" IsVisible="False" />
+        
+        <ListView x:Name="Liste_Proposition" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding propositions}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -30,15 +31,13 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{Binding NameP}" TextColor="Black" Padding="5,0,0,0"/>
-                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png"/>
+                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png" IsVisible="{Binding IsCurrentUserCreator}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--JUSQU'ICI-->
 
-        <!--REVOIR LES PAGES RESULTATS ET PARAMETRES-->
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -48,39 +47,42 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <Button Grid.Column="0" Grid.Row="0" Text="Ajouter une proposition" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
+            
+            <!--Boutons pour ajouter une proposition et voter-->
+            <Button Grid.Column="0" Grid.Row="0" Text="Ajouter une proposition" LineBreakMode="WordWrap" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsCurrentUserCreator}"/>
             <Button Grid.Column="1" Grid.Row="0" Text="Voter" TextColor="Black" Background="#82D9FF" ImageSource="logo_document_ok30.png" Clicked="Button_Camera_Clicked" HorizontalOptions="End" VerticalOptions="Center"/>
 
 
 
             <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#D4F0F2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="10*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="0" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="0" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Grid.Column="1" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-                <Button Grid.Column="2" Grid.Row="0" Background="Transparent" ImageSource="logo_statistic32.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="2" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_statistic32.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="3" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
                     </Grid.GestureRecognizers>
                 </Grid>
 
-                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="3" Grid.Row="1" Text="Paramètres du sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                <Button Grid.Column="5" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="5" Grid.Row="1" Text="Paramètres du sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid Grid.Column="5" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
                     </Grid.GestureRecognizers>

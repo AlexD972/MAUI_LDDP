@@ -58,6 +58,10 @@ public partial class Page_Accueil : ContentPage
 	//Récupère les sondages créés par l'utilisateur et ceux auxquels il a été invité
 	private async void Button_Refresh_Clicked(object sender, EventArgs e)
 	{
+		// ActivityIndicator actif
+		loadingIndicator.IsRunning = true;
+		loadingIndicator.IsVisible = true;
+
 		CollectionReference journee_coll = _database.Collection("Journee");
 		QuerySnapshot snapshot_journee = await journee_coll.GetSnapshotAsync();
 
@@ -126,9 +130,13 @@ public partial class Page_Accueil : ContentPage
 			}
 		}
 		Liste_Sondage.ItemsSource = sondages;
+
+		// ActivityIndicator inactif
+		loadingIndicator.IsRunning = false;
+		loadingIndicator.IsVisible = false;
 	}
 
-	//Enlève la sélection de l'élément après un appui, une couleur orange désagréable apparaissait sinon
+	//Selectionne le sondage  et enlève la sélection de l'élément après un appui, une couleur orange désagréable apparaissait sinon
 	private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 	{
 		var sondage = (Sondage_class)e.SelectedItem;
@@ -136,9 +144,10 @@ public partial class Page_Accueil : ContentPage
 			return;
 
 		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		bool isCurrentUserCreator = GlobalUID.UserUID == sondage.Createur;
 
 		// Naviguer vers une nouvelle page
-		Navigation.PushAsync(new Page_Sondage(database, sondage));
+		Navigation.PushAsync(new Page_Sondage(database, sondage, isCurrentUserCreator));
 
 		// Désélectionner l'élément
 		Liste_Sondage.SelectedItem = null;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI_LDDP.Pages.Accueil.Page_Creation_Sondage"
+             x:Class="MAUI_LDDP.Pages.Sondage.Page_Creation_Proposition"
              Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,11 +14,11 @@
             <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Ajouter un sondage" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Ajouter une proposition" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
 
         <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand">
             <Label x:Name="PollNameLabel" 
-               Text="Nom du sondage : " 
+               Text="Nom de la proposition : " 
                FontSize="Medium" 
                HorizontalOptions="CenterAndExpand"
                TextColor="Black"/>
@@ -27,15 +27,17 @@
                FontSize="Medium" 
                HorizontalOptions="CenterAndExpand"
                TextColor="Black"/>
-            <DatePicker x:Name="PollDatePicker" 
-                    Format="D" 
-                    HorizontalOptions="CenterAndExpand" 
-                    TextColor="Black"/>
-            <Button Text="Confirmer" 
-            Clicked="OnConfirmClicked" 
-            HorizontalOptions="CenterAndExpand" 
-            TextColor="Black"
-            BackgroundColor="#82D9FF"/>
+            <DatePicker 
+                x:Name="PollDatePicker" 
+                Format="D" 
+                HorizontalOptions="CenterAndExpand" 
+                TextColor="Black"/>
+            <Button 
+                Text="Confirmer" 
+                Clicked="OnConfirmClicked" 
+                HorizontalOptions="CenterAndExpand" 
+                TextColor="Black"
+                BackgroundColor="#82D9FF"/>
         </StackLayout>
     </Grid>
 </ContentPage>

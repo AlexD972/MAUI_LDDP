@@ -23,7 +23,7 @@ public partial class Page_Sondage : ContentPage
 		_database = database;
 		InitializeComponent();
 		//Récupération des informations du sondage
-		Sondage_class sondage_info = new Sondage_class
+		sondage_info = new Sondage_class
 		{
 			Createur = sondage_token.Createur,
 			DateJ = sondage_token.DateJ,
@@ -53,16 +53,38 @@ public partial class Page_Sondage : ContentPage
 			var result = await this.DisplayAlert("Confirmation", "Voulez-vous créer une proposition ?", "Oui", "Non");
 			if (result)
 			{
-				string pollName = await this.DisplayPromptAsync("Nom du sondage", "Veuillez entrer le nom de la proposition", "OK", "Annuler");
-				// Naviguez vers la nouvelle page pour choisir la date
-				var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+				string propName = await this.DisplayPromptAsync("Nom de la proposition sondage", "Veuillez entrer le nom de la proposition", "OK", "Annuler");
 
-				//REMPLACER PAR CREATION PROPOSITION
-				//await Navigation.PushAsync(new Page_Creation_Sondage(database, pollName), false);
+				// Création d'une référence à la collection Proposition
+				CollectionReference coll = _database.Collection("Proposition");
+
+				// Récupération de tous les documents avec le même token
+				QuerySnapshot snapshot = await coll.WhereEqualTo("Token", Token).GetSnapshotAsync();
+
+				// On compte le nombre de ces documents et on ajoute 1 pour obtenir le prochain numéro
+				int nextNumber = snapshot.Count + 1;
+
+				// Création d'un document avec des données
+				Dictionary<string, object> proposition = new Dictionary<string, object>
+				{
+					{ "IdP", nextNumber},
+					{ "NameP", propName},
+					{ "Pourcentage", 0},
+					{ "Token", Token }
+				};
+
+				// Création un nouvel ID pour le document
+				string newId = Token + "_" + nextNumber;
+
+				// Ajoute le document avec le nouvel ID à la collection Proposition
+				DocumentReference docRef = coll.Document(newId);
+				await docRef.SetAsync(proposition);
+				Button_Refresh_Clicked(null, null);
 			}
 		});
-		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>(); 
-		Navigation.PushAsync(new Page_Sondage(database, sondage_info, _isCurrentUserCreator), false);
+		//var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>(); 
+		//Navigation.PushAsync(new Page_Sondage(database, sondage_info, _isCurrentUserCreator), false);
+		Button_Refresh_Clicked(null, null);
 	}
 
 	//Navigue vers la page de la caméra

@@ -92,6 +92,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\Sondage\Page_Creation_Proposition.xaml.cs">
+	    <DependentUpon>Page_Creation_Proposition.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\Sondage\Page_Sondage.xaml.cs">
 	    <DependentUpon>Page_Sondage.xaml</DependentUpon>
 	  </Compile>
@@ -104,6 +107,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Sondage\Page_Creation_Proposition.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Sondage\Page_Sondage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

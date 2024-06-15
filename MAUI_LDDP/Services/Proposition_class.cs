@@ -12,6 +12,14 @@ namespace MAUI_LDDP.Services
 		public int Pourcentage { get; set; }
 		public string NameP { get; set; }
 		public string Token { get; set; }
+		public Color RandomColor { get; set; }
+
+		public Proposition_class()
+		{
+			Random random = new Random();
+			RandomColor = Color.FromRgb(random.Next(256), random.Next(256), random.Next(256));
+		}
 	}
+
 
 }

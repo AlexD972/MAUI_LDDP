@@ -2,9 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MAUI_LDDP.Convertisseurs"
-             x:Class="MAUI_LDDP.Pages.Sondage.Page_Sondage"
+             x:Class="MAUI_LDDP.Pages.Sondage.Page_Resultats"
              Background="#F7F9ED" NavigationPage.HasNavigationBar="False">
-
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IntToFloatConverter x:Key="IntToFloatConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -21,18 +27,18 @@
 
         <ActivityIndicator x:Name="loadingIndicator" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Color="#82D9FF" IsRunning="False" IsVisible="False" />
         
-        <ListView x:Name="Liste_Proposition" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding propositions}">
+        <ListView x:Name="Liste_Proposition" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding NameP}" TextColor="Black" Padding="5,0,0,0"/>
-                            <Button Grid.Column="1" Text="Supprimer" BackgroundColor="#82D9FF" CornerRadius="0" BorderColor="Black" BorderWidth="0.1" ImageSource="logo_close.png" Clicked="Button_Delete_Clicked" CommandParameter="{Binding .}" IsVisible="{Binding IsCurrentUserCreator}"/>
-                        </Grid>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding NameP}" VerticalOptions="Center" />
+                            <ProgressBar Progress="{Binding Pourcentage, Converter={StaticResource IntToFloatConverter}}"
+                                 HeightRequest="10" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 ProgressColor="{Binding RandomColor}" />
+                            <Label Text="{Binding Pourcentage, StringFormat='{0}%'}" VerticalOptions="Center" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -47,12 +53,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <!--Boutons pour ajouter une proposition et voter-->
-            <Button Grid.Column="0" Grid.Row="0" Text="Ajouter une proposition" LineBreakMode="WordWrap" TextColor="Black" Background="#82D9FF" ImageSource="logo_plus.png" Clicked="Button_Create_Clicked" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsCurrentUserCreator}"/>
-            <Button Grid.Column="1" Grid.Row="0" Text="Voter" TextColor="Black" Background="#82D9FF" ImageSource="logo_document_ok30.png" HorizontalOptions="End" VerticalOptions="Center"/>
-
-
 
             <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#D4F0F2">
                 <Grid.ColumnDefinitions>
@@ -72,11 +72,11 @@
                 <Button Grid.Column="1" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_statistic32.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_statistic32.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="3" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_Resultats_Clicked" CommandParameter="{Binding .}"/>
+                        <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
                     </Grid.GestureRecognizers>
                 </Grid>
 

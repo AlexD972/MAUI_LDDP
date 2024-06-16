@@ -41,19 +41,38 @@ public partial class Page_Camera : ContentPage
 		Dispatcher.Dispatch(async () =>
 		{
 			string token = await this.DisplayPromptAsync("Ajouter un sondage", "Veuillez entrer le code d'accès du sondage", "OK", "Annuler");
-			// Créer une référence à la collection User
-			CollectionReference coll = _database.Collection("User");
 
-			// Créer un document avec des données
-			Dictionary<string, object> sondage = new Dictionary<string, object>
-		{
-			{ "IdUser", GlobalUID.UserUID },
-			{ "Token", token }
-		};
+			// Crée une référence à la collection Journee
+			CollectionReference journeeColl = _database.Collection("Journee");
 
-			// Ajoute le document à la collection journee
-			DocumentReference docRef = await coll.AddAsync(sondage);
+			// Vérifie si le token existe dans la collection Journee
+			QuerySnapshot snapshot = await journeeColl.WhereEqualTo("Token", token).GetSnapshotAsync();
+
+			if (snapshot.Count > 0)
+			{
+				// Crée une référence à la collection User
+				CollectionReference userColl = _database.Collection("User");
+
+				// Crée un document avec des données
+				Dictionary<string, object> sondage = new Dictionary<string, object>
+				{
+					{ "IdUser", GlobalUID.UserUID },
+					{ "Token", token }
+				};
+
+				// Ajoute le document à la collection User
+				DocumentReference docRef = await userColl.AddAsync(sondage);
+			}
+			else
+			{
+				var result = await this.DisplayAlert("Erreur", "Ce sondage n'existe pas, voulez vous réessayer", "Oui", "Non");
+				if (result)
+				{
+					Button_Add_Clicked(null, null);
+				}
+			}
 		});
-		//Navigation.PushAsync(new Page_Accueil(), false);
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		Navigation.PushAsync(new Page_Accueil(database), false);
 	}
 }

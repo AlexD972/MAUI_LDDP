@@ -151,13 +151,6 @@ public partial class Page_Accueil : ContentPage
 
 		// Désélectionner l'élément
 		Liste_Sondage.SelectedItem = null;
-
-		//Ancien code
-		//if (e.SelectedItem == null)
-		//	return;
-
-		//// Déséléctionne l'élément
-		//((ListView)sender).SelectedItem = null;
 	}
 
 

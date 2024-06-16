@@ -85,4 +85,12 @@ public partial class Page_Resultats : ContentPage
 	{
 		Navigation.PushAsync(new Page_Parametres(), false);
 	}
+
+	private void Button_Sondage_Clicked(object sender, EventArgs e)
+	{
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		bool isCurrentUserCreator = GlobalUID.UserUID == sondage_info.Createur;
+
+		Navigation.PushAsync(new Page_Sondage(database, sondage_info, isCurrentUserCreator));
+	}
 }

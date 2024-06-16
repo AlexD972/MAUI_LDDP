@@ -23,7 +23,6 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameJ}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-        <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         <ActivityIndicator x:Name="loadingIndicator" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Color="#82D9FF" IsRunning="False" IsVisible="False" />
         
@@ -31,14 +30,19 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding NameP}" VerticalOptions="Center" />
-                            <ProgressBar Progress="{Binding Pourcentage, Converter={StaticResource IntToFloatConverter}}"
-                                 HeightRequest="10" 
-                                 HorizontalOptions="FillAndExpand" 
-                                 ProgressColor="{Binding RandomColor}" />
-                            <Label Text="{Binding Pourcentage, StringFormat='{0}%'}" VerticalOptions="Center" />
-                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding NameP}" TextColor="Black" VerticalOptions="Center" />
+                            <ProgressBar    Grid.Row="1" Progress="{Binding Pourcentage, Converter={StaticResource IntToFloatConverter}}"
+                                            HeightRequest="10" 
+                                            HorizontalOptions="FillAndExpand"
+                                            ProgressColor="{Binding RandomColor}" />
+                            <Label Grid.Row="2" Text="{Binding Pourcentage, StringFormat='{0}%'}" TextColor="Black" VerticalOptions="Center" />
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -69,16 +73,17 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Column="1" Grid.Row="0" Background="#82D9FF" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-
-                <Button Grid.Column="3" Grid.Row="0" Background="Transparent" ImageSource="logo_statistic32.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Column="3" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                <Grid Grid.Column="5" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_Parametres_Clicked"/>
+                        <TapGestureRecognizer Tapped="Button_Sondage_Clicked"/>
                     </Grid.GestureRecognizers>
                 </Grid>
+
+                <Button Grid.Column="3" Grid.Row="0" Background="#82D9FF" ImageSource="logo_statistic32.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="3" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+
 
                 <Button Grid.Column="5" Grid.Row="0" Background="Transparent" ImageSource="logo_parametre.png" Clicked="Button_Parametres_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="5" Grid.Row="1" Text="Paramètres du sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>

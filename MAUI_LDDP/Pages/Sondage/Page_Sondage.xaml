@@ -76,7 +76,7 @@
                 <Label Grid.Column="3" Grid.Row="1" Text="Résultats" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_Resultats_Clicked" CommandParameter="{Binding .}"/>
+                        <TapGestureRecognizer Tapped="Button_Resultats_Clicked"/>
                     </Grid.GestureRecognizers>
                 </Grid>
 

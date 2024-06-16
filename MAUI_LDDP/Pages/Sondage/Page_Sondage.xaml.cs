@@ -48,15 +48,8 @@ public partial class Page_Sondage : ContentPage
 
 	private void Button_Resultats_Clicked(object sender, EventArgs e)
 	{
-		var grid = (Grid)sender;
-		var tapGestureRecognizer = (TapGestureRecognizer)grid.GestureRecognizers[0];
-		var sondage = (Sondage_class)tapGestureRecognizer.CommandParameter;
-		if (sondage == null)
-			return;
-
 		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
-
-		Navigation.PushAsync(new Page_Resultats(database, sondage), false);
+		Navigation.PushAsync(new Page_Resultats(database, sondage_info), false);
 	}
 
 	private void Button_Create_Clicked(object sender, EventArgs e)

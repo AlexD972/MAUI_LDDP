@@ -36,7 +36,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="{Binding NameP}" TextColor="Black" VerticalOptions="Center" />
+                            <Label Grid.Row="0" Text="{Binding NameP}" TextColor="Black"  VerticalOptions="Center" />
                             <ProgressBar    Grid.Row="1" Progress="{Binding Pourcentage, Converter={StaticResource IntToFloatConverter}}"
                                             HeightRequest="10" 
                                             HorizontalOptions="FillAndExpand"
@@ -75,7 +75,7 @@
 
                 <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_sondage.png" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Label Grid.Column="1" Grid.Row="1" Text="Sondage" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Grid Grid.Column="5" Grid.Row="0" Grid.RowSpan="2">
+                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_Sondage_Clicked"/>
                     </Grid.GestureRecognizers>

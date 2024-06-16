@@ -52,6 +52,12 @@ public partial class Page_Sondage : ContentPage
 		Navigation.PushAsync(new Page_Resultats(database, sondage_info), false);
 	}
 
+	private void Button_Back_Clicked(object sender, EventArgs e)
+	{
+		var database = MauiProgram.CreateMauiApp().Services.GetRequiredService<FirestoreDb>();
+		Navigation.PushAsync(new Page_Accueil(database), false);
+	}
+
 	private void Button_Create_Clicked(object sender, EventArgs e)
 	{
 		Dispatcher.Dispatch(async () =>

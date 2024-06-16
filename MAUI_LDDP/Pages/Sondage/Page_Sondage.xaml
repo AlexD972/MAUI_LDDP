@@ -18,6 +18,7 @@
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding NameJ}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         <Button Grid.Column="1" Grid.Row="0" Background="Transparent" ImageSource="logo_refresh.png" Clicked="Button_Refresh_Clicked" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Button Grid.Column="0" Grid.Row="0" Background="Transparent" ImageSource="logo_back.png" Clicked="Button_Back_Clicked" HorizontalOptions="Start" VerticalOptions="Center"/>
 
         <ActivityIndicator x:Name="loadingIndicator" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Color="#82D9FF" IsRunning="False" IsVisible="False" />
         

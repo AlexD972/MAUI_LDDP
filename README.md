@@ -16,3 +16,11 @@ Ce projet est réalisé avec le langage **C#** en utilisant le framework **MAUI*
 
 # Pour faire fonctionner le projet
 Après décompression du zip, il faut renommer le dossier pm44-fil-rouge-appindividuelle-AlexD972 et son sous-dossier pm44-fil-rouge-appindividuelle-AlexD972 en quelque chose de plus court sinon ils poseront problème lors de la compilation du projet.
+Modifier et renommer le ionicapp_.json en ionicapp.json et remplacer le contenu par : https://drive.google.com/file/d/1Dm0oKv5314pDL9ak0PwcaqUQ3Z9DLanY/view?usp=drive_link
+
+
+# Autres
+Le lien de la vidéo de démonstration de l'application : https://drive.google.com/file/d/1h2yjDq9bmwJIxzNtp2DzVB2Vh_pV4S_l/view?usp=sharing
+Le lien de la maquette de l'application : https://www.figma.com/file/wO8LbXuSwtZyxQWoZTekTd/Maquette-dev-mobile?type=design&mode=design&t=fl2xzE6Q3ga32Y8n-1
+Le retex de l'utilisation de la technologie MAUI pour ce projet : https://drive.google.com/file/d/1UEczw5_HixGBc3qhw63CKK8sDV3caIRe/view?usp=drive_link
+
